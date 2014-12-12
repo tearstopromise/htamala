@@ -321,7 +321,7 @@
             alert('great error');
             alert(e.message);
         }
-			<!--=================================== AUDIO END ===================================================-->
+
 		});
 	
 		function showInstructions(){
@@ -339,6 +339,27 @@
 			location.href = "main-game-page.html";
 		});
 			
+			var my_media = null;
+		
+			 function playAudio(src) {
+            if (device.platform == 'Android') {
+                src = '/android_asset/www/' + src;
+            }
+
+            var media = new Media(src, success, error_error);
+
+            media.play();
+        }
+
+        function success() {
+            // ignore
+			alert("success");
+        }
+
+        function error_error(e) {
+            alert('great error');
+            alert(e.message);
+        }
 	</script>
 
 </body>
