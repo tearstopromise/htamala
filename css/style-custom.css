@@ -1,0 +1,241 @@
+/* Global styles START*/
+html{
+			background-color:#2b5b7b;
+			background-color:rgba(43,91,123,.5);
+		}	
+.boderRadius{
+	border-radius:1em;
+}
+.modal-header{
+	padding:0 2em;
+	margin:0;
+}
+.modal-body{
+	padding:0 .5em;
+	margin:0;
+	
+	
+}
+.modal-content{
+	background:#7AAF21;
+	
+	
+}
+.btn_close{
+		position:absolute;
+		right:-2em;
+		top:-2em;
+		z-index:999999;
+		width:7em;
+	}
+.modal-dialog,.modal-content,.mainCointainer {
+			border-radius:2em;
+		}
+		.modal-header{
+			border-radius: 1em 1em 0 0;
+			padding:0;
+		}
+		.modal-footer{
+			border-radius:0 0 1em 1em ;
+		}
+.btn-default:focus{
+			background:red;
+		}
+.img-thumbnail:hover{
+	cursor:pointer;
+	
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0;
+    outline-offset: 0px;
+	background:#60c225;
+	
+}
+html, body{
+	position:relative;
+	width:100%;
+	height:100%;
+	
+}
+body, .btn{
+	font-family:cursive,"serif","BAUHAUS 93";
+	text-shadow: 1px 1px 3px rgba(26,35,5,.8);
+	letter-spacing:.1em;
+	
+}
+#wrapper{
+	background:none;
+	margin-top:0%;
+	
+}
+/* Global styles END*/
+
+
+
+/* for index.html page START */
+#main-menu-wrapper{
+		margin-top:0%;
+		background:none;
+	}
+/* for index.html page END */
+
+/* for select-game-type.html page START */
+
+/* for select-game-type.html page END */
+
+
+
+/* for adventure-map.html page START */
+
+/* for adventure-map.html page END */
+
+
+
+/* for main-game.html page START */
+
+
+/* for main-game.html page END */
+
+
+
+
+/* for options.html page START */
+
+
+/* for options.html page END */
+
+
+
+
+
+
+
+/*-------------------------------------------------@media Queries START -------------------------------------------------*/
+	/*for small phones START */
+	@media (max-width:767px){
+		#main-menu-wrapper{
+		
+		}
+	}
+	/*for small phones END */
+
+	/*for Tablets START */
+	@media (min-width:767px) and (max-width:1280px){
+		#wrapper{
+			
+		}
+	}
+	/*for Tablets END*/
+
+
+/*-------------------------------------------------@media Queries END -------------------------------------------------*/
+
+/*-------------------------------------------------transitions START -------------------------------------------------*/
+.leftWindow, .rightWindow{
+	position:fixed;
+	width:50%;
+	height:100%;
+	z-index: 99999;
+}
+.leftWindow{
+	left:0;
+	top:0;
+	background:black;
+	background:rgba(0,0,0,0.5);
+	
+}
+.rightWindow{
+	right:0;
+	top:0;
+	background:black;
+	background:rgba(0,0,0,0.5);
+}
+.blackBg{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.5);
+	z-index: 99999;
+}
+/*-------------------------------------------------transitions END -------------------------------------------------*/
+
+
+
+/*------------------------------------------------- special START -------------------------------------------------*/
+.textCenter{
+
+	text-align:center;
+}
+.borderless{	
+	border:0;
+}
+
+.noBG{
+	background:none;
+	padding:0;
+}
+.marginBottom{
+	margin:10px 0px;
+}
+
+.img-thumbnail{
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.075);
+}
+/*-------------------------------------------------special END -------------------------------------------------*/
+.modal-dialog{
+	border:#2b3b08 solid 5px;
+	background:#7aaf21;
+	color:#fff;
+	
+}
+.modal-header{
+	border:0;
+	background:#7aaf21;
+}.modal-body{
+	
+	background:#7aaf21;
+}.modal-footer{
+	background:#7aaf21;
+	border:0;
+}
+.btn-default{
+	background:#60c225;
+	color:#fff;
+	border:#527b11 solid thin;
+	margin-bottom:.3em;
+}
+.btn-default:hover,.btn-default:focus{
+	background:#60c225;
+	color:#fff;
+	border:#49a90f solid thin;
+}
+
+
+#main-menu-wrapper{
+	margin-top:5%;
+}
+
+.splashImages{
+		margin-top:50%;
+	}
+@media  (min-width: 768px) and (max-width:799px){
+	
+	.splashImages{
+		margin-top:50%;
+	}
+}
+		
+@media  (min-width: 800px) and (max-width:979px){
+	
+	.splashImages{
+		margin-top:50%;
+	}
+
+}
+
+@media (width:980px){
+	
+	.splashImages{
+		margin-top:50%;
+	}
+}

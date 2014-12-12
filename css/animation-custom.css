@@ -1,0 +1,28 @@
+.animated {
+  
+		position:absolute;
+		
+}
+
+.enemyForwardClass{
+	 -webkit-animation-name: enemeyForwardAnimate;
+    -moz-animation-name: enemeyForwardAnimate;
+    -ms-animation-name: enemeyForwardAnimate;
+    -o-animation-name: enemeyForwardAnimate;
+    animation-name: enemeyForwardAnimate;
+	
+	 -webkit-animation-duration: 15s;
+        -moz-animation-duration: 15s;
+        -ms-animation-duration: 15s;
+        -o-animation-duration: 15s;
+        animation-duration: 15s;
+}
+@-moz-keyframes enemeyForwardAnimate{
+	 0%, 5%{opacity: 0;right:0%;} 
+    100%{opacity: 1;right:100%;}
+	}
+	
+@-webkit-keyframes enemeyForwardAnimate{
+	 0%, 5%{opacity: 0;right:0%;} 
+    100%{opacity: 1;right:100%;}
+	}

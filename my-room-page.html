@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Alamath - Arithmetic Game</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style-custom.css">
+	<style type="text/css">
+	html{
+		background:none;
+	}
+	body{
+		opacity:0;
+	}
+	.mainCointainer{
+			margin-top:3%;
+			border:#2b3b08 solid 5px;
+			background:#7aaf21;
+			color:#fff;
+			text-shadow: 0px 1px 0px rgba(26,35,5,.8);
+			
+	}
+	body{
+		background:url("img/png/Cloud-Background-darkbg.png") no-repeat center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+	}
+	.nav, tab-content{
+		
+	}
+	.mainCointainer a{
+		color:#fff;
+		
+	}
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+		background:#39550c;
+		color:#fff;
+		border:0;
+	}
+	a:focus{
+		outline: thin dotted;
+		outline-offset: -2px;
+	}
+	a:hover{
+		color:#353732;
+		
+	}
+	
+	#myTab1{
+		margin:1em;
+	}
+	#progressTab{
+		
+	}
+	.nav-tabs a{
+		background:#557f12;
+	}
+	.nav {
+		
+		border:0;
+	}
+	#myTabContent1{
+		background:red;
+	}
+	
+	.borderless{
+		border:0;
+	}
+	.noBg{
+		background:none;
+	}
+	.inlineBlock{
+		display:inline-block;
+	}
+	th, td{
+		text-align:center;
+	}
+	h3{
+		font-size:.9em;
+		
+	}
+	h1,h2,h3,h4{
+		line-height:0;
+	}
+	</style>
+			<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jq-custom-animations.js"></script>
+		<script src="js/jq-custom.js"></script>
+		<script src="js/jquery.transit.js"></script>
+		<script src="js/Chart.js"></script>
+	</head>
+	<body>
+	
+	<!--main cointainer START -->
+	<div class="mainCointainer col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+		<img src="img/png/btn-x.png" alt="" class="btn_close btn-back-to-main-menu" />
+			<center><h2 class="title">My Room</h2></center>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:none;padding:2em">
+				<div  style="background:#557f12;text-align:center;" class="boderRadius">
+				<img src="img/png/main-char-male.png" alt="" class="img-thumbnail noBg borderless col-lg-12 mainCharImg "/>
+				<h2><span class="txtLocalUsername"></span></h2>
+				</div>
+			</div>
+			
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " style="padding:2em;">
+				<div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12 boderRadius"  style="background:#39550c;">
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th><h4>My Stars:</h4></th>
+                                        <th><h4>Number of Stars</h4></th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr >
+                                        <td><h3 class="inlineBlock">Addition</h3><img src="img/png/score-star.png" alt="" class="img-thumbnail noBg borderless col-lg-2 col-md-2 col-sm-4 col-xs-4"/> </td>
+                                        <td><h3><span class="txtLocalStarsAddition">0</span></h3></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td><h3 class="inlineBlock">Substraction</h3><img src="img/png/score-star.png" alt="" class="img-thumbnail noBg borderless col-lg-2 col-md-2 col-sm-4 col-xs-4"/> </td>
+                                        <td><h3><span class="txtLocalStarsSubtraction">0</span></h3></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                         <td><h3 class="inlineBlock">Multiplication</h3><img src="img/png/score-star.png" alt="" class="img-thumbnail noBg borderless col-lg-2 col-md-2 col-sm-4 col-xs-4"/> </td>
+                                        <td><h3><span class="txtLocalStarsMultiplication">0</span></h3></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                         <td><h3 class="inlineBlock">Division</h3><img src="img/png/score-star.png" alt="" class="img-thumbnail noBg borderless col-lg-2 col-md-2 col-sm-4 col-xs-4"/> </td>
+                                        <td><h3><span class="txtLocalStarsDivision">0</span></h3></td>
+                                       
+                                    </tr>
+									<tr>
+                                         <td><h4>Total Stars:</h4></td>
+                                        <td><h4><span class="txtlocalTotalStars">0</span></h4></td>
+                                       
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+						
+			</div>
+								
+		
+						
+			
+			
+			
+		
+	</div><!--main cointainer END -->
+	<script src="phonegap.js"></script>
+	<script type="text/javascript"> 
+		$(document).ready(function(){
+		 var myMedia;
+		$("body").transition({opacity:1},1000);
+		
+		
+		<!-- for bootstrap tabs script START-->
+		$(function(){
+			  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			  // Get the name of active tab
+			  var activeTab = $(e.target).text(); 
+			  // Get the name of previous tab
+			  var previousTab = $(e.relatedTarget).text(); 
+			  $(".active-tab span").html(activeTab);
+			  $(".previous-tab span").html(previousTab);
+		   });
+		});<!-- for bootstrap tabs script END-->
+		
+		displayStars();
+		displayUserDetails();
+		changeCharElements();
+		function displayStars(){
+			var operation1 = "Addition";
+			var operation2 = "Subtraction";
+			var operation3 = "Multiplication";
+			var operation4 = "Division";
+			var a = (window.localStorage.getItem("localStars"+operation1));
+			if(a == null || a == "null" || a == "" || a == "NaN" || a == undefined){
+				a = 0;
+			}
+			$(".txtLocalStars"+operation1).html(a);
+			
+		
+			var b = (window.localStorage.getItem("localStars"+operation2));
+			if(b == null || b == "null" || b == "" || b == "NaN" || b == undefined){
+				b = 0;
+			}
+			$(".txtLocalStars"+operation2).html(b);
+			
+			var c = (window.localStorage.getItem("localStars"+operation3));
+			if(c == null || c == "null" || c == "" || c == "NaN" || c == undefined){
+				c = 0;
+			}
+			$(".txtLocalStars"+operation3).html(c);
+			
+			var d = (window.localStorage.getItem("localStars"+operation4));
+			if(d == null || d == "null" || d == "" || d == "NaN" || d == undefined){
+				d = 0;
+			}
+			$(".txtLocalStars"+operation4).html(d);
+			
+			var totalStars = parseInt(a) + parseInt(b) + parseInt(c) + parseInt(d);
+			$(".txtlocalTotalStars").html(totalStars);
+			
+			
+		}
+		function displayUserDetails(){
+			var a = window.localStorage.getItem("localAccountUsername");
+			$(".txtLocalUsername").html(a);
+		}
+		
+		$(".btn-back-to-main-menu").click(function(){
+		location.href = "index.html";
+		
+		
+		
+	});
+	
+	
+	playAudio("1.mp3")
+			
+			<!--=================================== AUDIO start ===================================================-->
+			var myMedia = null;
+			function playAudio(src){
+				myMedia = new Media(src, onSuccess, onError);
+				// Play audio
+				myMedia.play();
+
+				
+			}
+			<!--=================================== AUDIO END ===================================================-->
+	});
+	//for strengths pie END
+
+	</script>
+
+	</body>
+</html>

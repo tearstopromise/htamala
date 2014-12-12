@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Alamath - Arithmetic Game</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style-custom.css">
+	
+    <!-- Custom Fonts -->
+	<!--<link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<style type="text/css">
+	body{
+		opacity:0;
+	}
+		html{
+			posiiton:relative;
+			background:url("img/png/Cloud-Background-darkbg.png") no-repeat center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+			overflow:hidden;
+			
+			position:fixed;
+			overflow:hidden;
+		}
+		.cloudToLeft{
+			position:relative;
+			position:fixed;
+			left:20%;
+		}
+		
+		.cloud{
+			z-index:99999;
+		}
+		.cloudToRight{
+			position:relative;
+			position:fixed;
+			left:40%;
+		}
+		.cloud-1{
+			top:10%;
+		}
+		.cloud-2{
+			top:30%;
+		}
+		.cloud-3{
+			top:40%;
+		}
+		#wrapper{
+			margin-top:.5em;
+			position:relative;
+		}
+		.show{
+			display:visible;
+		}
+		body{
+			position:fixed;
+			overflow:hidden;
+			background:none;
+			 -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+		}
+		.instructionsWrapper{
+			background:rgba(0,0,0,.5);
+			position:absolute;
+			bottom:0;
+			height:50%;
+			padding:2em;
+			color:#fff;
+			font-size:1em;
+			bottom:-50%;
+			
+		}
+		.instructionContainer{
+		position:relative;overflow:auto;height:100%;
+		}
+		.levelSelected{
+			background:rgba(0,0,0,.5);
+		}
+	</style>
+	
+	
+	
+</head>
+
+<body>
+
+	<!--
+	<div class="leftWindow"></div>
+	<div class="rightWindow"></div>
+	-->
+	<div class="darkBg"></div>
+	 <div id="wrapper" >
+	 
+		<img src="img/png/btn-to-left.png" alt="" style="position:absolute;top:0;left:0;z-index:999999" class="btn btn-back-to-main-menu" />
+		
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+				<center style="color:#fff">
+				<h2>Adventure Map</h2>
+				<h3>Select Kingdom</h3>
+				</center>
+				<img src="img/png/level-addition.png" alt="" id="levelAddition" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-subtraction.png" alt="" id="levelSubtraction" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-multiplication.png" alt="" id="levelMultiplication" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-division.png" alt="" id="levelDivision" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+			</div>
+	   </div>
+	
+	
+		
+    </div>
+	
+    <!-- /#wrapper -->
+	
+	<div class="instructionsWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+			<!-- instruction addition START 
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+				<img src="img/png/char-mentor.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12" />
+				
+			</div>
+			
+			<!--instruction ADDITION START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionAddition">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+			
+				<p><b>Addition Kingdom: </b> Lets protect the Addition Kingdom by solving addition problems.</p>
+				<!--
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+					<img src="img/png/instructions/instruction-addition.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>-->
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-addition.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the sum and Complete the number sentence</p>
+				
+					<button id="quizArrayAddition" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction ADDITION END-->
+			
+			<!--instruction subtraction START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionSubtraction">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Subtraction Kingdom: </b>Lets protect the Subtraction Kingdom by solving subtraction problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-subtraction.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the difference and Complete the number sentence</p>
+				
+					<button id="quizArraySubtraction" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction subtraction END-->
+			
+			
+			<!--instruction multiplication START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionMultiplication">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Multiplication Kingdom: </b>Lets protect the Multiplication Kingdom by solving Multiplication problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-multiplication.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the product and Complete the number sentence</p>
+				
+					<button  id="quizArrayMultiplication" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction multiplication END-->
+			
+			<!--instruction Division START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionDivision">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Division Kingdom: </b>Lets protect the Division Kingdom by solving Division problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-division.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the Quotient and Complete the number sentence</p>
+				
+					<button  id="quizArrayDivision" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction multiplication END-->
+			
+				
+			
+		</div>
+	<!-- Boostrap Modal START
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Confirmation</h4>
+				</div>
+				<div class="modal-body">
+					<p>Do you want to save changes you made to document before closing?</p>
+					<p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	Boostrap  Modal END-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jq-custom-animations.js"></script>
+		<script src="js/jquery.transit.js"></script>
+		
+		<script src="phonegap.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+		var myMedia;
+		$("body").transition({opacity:1},1000);
+		
+		
+			openWindow();
+			$("#btn").click(function(){
+				$("#myModal").modal('show');
+				
+				
+			});
+			
+			$(".cloudToLeft").animate({'left':'1000px'},2000);
+			$(".cloudToRight").animate({'left':'-=1000px'},2000);
+			
+			
+			$(".levelSelect").click(function(){
+				var a = $(this).attr("id");
+				//alert(a);
+				showInstructions();
+				$(".levelSelect").removeClass("levelSelected");
+				$(this).addClass("levelSelected");
+				setTimeout(function(){
+					$(".instructionContainer").hide();
+					if(a == "levelAddition"){
+						$(".instructionAddition").show();
+					}else if(a == "levelSubtraction"){
+						$(".instructionSubtraction").show();
+					}else if(a == "levelMultiplication"){
+						$(".instructionMultiplication").show();
+					}else if(a == "levelDivision"){
+						$(".instructionDivision").show();
+					}
+				},500);
+				
+			});
+			
+			
+			playAudio('1.mp3');
+			//var my_media = null;
+			<!--=================================== AUDIO start ===================================================-->
+			
+			 function playAudio(src) {
+            if (device.platform == 'Android') {
+                src = '/android_asset/www/default/' + src;
+            }
+
+            var media = new Media(src, success, error_error);
+
+            media.play();
+        }
+
+        function success() {
+            // ignore
+			alert("success");
+        }
+
+        function error_error(e) {
+            alert('great error');
+            alert(e.message);
+        }
+			<!--=================================== AUDIO END ===================================================-->
+		});
+	
+		function showInstructions(){
+			$(".instructionsWrapper").transition({bottom:"-50%"},500,function(){
+				$(".instructionsWrapper").transition({bottom:"0%"},1000)
+			
+			});
+		}
+		
+		$(".startGame").click(function(){
+			var a = $(this).attr("id");
+			
+			//alert(a);
+			window.localStorage.setItem("quizLevelSelected",a);
+			location.href = "main-game-page.html";
+		});
+			
+	</script>
+
+</body>
+
+</html>

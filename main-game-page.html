@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Alamath - Arithmetic Game</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style-custom.css">
+	<link rel="stylesheet" href="css/animation-custom.css">
+	
+    <!-- Custom Fonts -->
+	<!--<link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<style type="text/css">
+	
+	</style>
+	
+	<style type="text/css">
+		body{
+			opacity:0;
+		}
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		html, body, #wrapper{
+			position:relative;width:100%;height:100%;
+		
+		}
+		html,body{
+			background-position:fixed;
+			overflow:hidden;
+			
+		}
+		
+		#main-char{
+			width:15%;
+			height:100%;
+			background:red;
+			position:absolute;
+			bottom:0;
+			left:10%;
+			background:url("img/png/main-char-male.png");
+			background-size:60%;
+			background-position:right bottom;
+			background-repeat:no-repeat;
+			z-index:10000;
+			
+		}
+		
+		#main-platform{
+			background:#dedede;height:60%;width:100%;position:relative;
+			background:url("img/png/mountain-bg.png");
+			background-size:100% 100%;
+			background-position:fixed;
+			background-repeat:no-repeat;
+			z-index:9000;
+			overflow:hidden;
+			height:50%;
+			display:block;
+		}
+		#main-question{
+			background:#999999;height:60%;width:100%;position:relative;
+			background:url("img/png/platform.png");
+			background-repeat:no-repeat;
+			background-size:40% 100%;
+			background-repeat:repeat-x;
+			height:50%;
+			z-index:9000;
+			
+			
+
+		}
+		.enemy-box{
+			width:5em;
+			width:15%;
+			height:100%;
+			background-color:green;
+			position:absolute;
+			bottom:0;
+			right:-5%;
+			z-index:9999;
+			
+		}
+		.enemy-sample{
+			width:5em;
+			width:15%;
+			height:100%;
+			background:blue;
+			position:absolute;
+			bottom:0;
+			right:-5%;
+			background:url("img/png/enemy-images/0.png");
+			background:none;
+			background-size:75%;
+			background-repeat:no-repeat;
+			background-position:left bottom;
+			
+			z-index:10000;
+			
+		}
+		#question, .btn-choice{
+			font-size:2em;
+		}
+		.enemy-size{
+			
+			background-size:75%;
+			background-repeat:no-repeat;
+			background-position:left bottom;
+			
+			}
+		.enemy-lightning{
+			position:absolute;
+			bottom:0;
+			background:url("img/png/score-star.png");
+			background-position:bottom;
+			background-repeat:no-repeat;
+			background-size:50%;
+			background-color:rgba(196,231,255,.5);
+			z-index:99999;
+			
+		}
+		
+		.progressBarDivContainer{
+		
+			
+			border:solid .5em #2c4555;
+			border-radius: 5px 5px 5px 5px;
+			border-radius: .3em .3em .3em .3em;
+			box-shadow: 12px 12px 10px rgba(0, 0, 0, 0.2);
+			background-color:#2d4900;
+			overflow:visible;
+			padding:0;
+			margin-top:2em;
+			height:3em;
+			
+			
+		}
+		.progressBarDiv{
+			position:relative;
+			right:0;
+			width:0;
+			height:100%;
+			background-color:#60c225;
+			overflow:visible;
+		}
+		.playerHead{
+			
+			
+			
+		}.playerHeadContainer{
+			
+			position:absolute;
+			width:2.1em;
+			height:2.1em;
+			overflow:visible;
+			right:0;
+			
+		}
+		.progressBarMedal{
+			position:absolute;
+			width:5;
+			height:600%;
+			overflow:visible;
+			right:-6.5em;
+			top:-4em;
+		}
+		
+		.progressBarMedalContainer{
+			width:20px;
+			height:100%;
+			position:absolute;
+			right:0;
+			top:0;
+			overflow:visible;
+			
+		}
+		.specialModalContainer{
+			background:rgba(0,0,0,0.5);
+		}
+		.modal-dialog{
+			border:#2b3b08 solid 5px;
+			background:#7aaf21;
+			color:#fff;
+			text-shadow: 0px 3px 1px rgba(26,35,5,.8);
+			text-stroke: 3px solid #ffffff;
+		}.modal-header{
+			border:0;
+			background:#7aaf21;
+		}.modal-body{
+			
+			background:#7aaf21;
+		}.modal-footer{
+			background:#7aaf21;
+			border:0;
+		}
+		
+		.mainQuestionContainer .btn{
+			font-size:2em;
+			font-weight:bold;
+			text-shadow: 1px 3px 1px rgba(26,35,5,1);
+			font-family:Calibri;
+		}
+		.mainQuestionContainer{
+			bottom:-10em;
+			position:absolute;
+			
+		}
+		.btn-default:focus{
+			background:#60C225;
+		}
+		.praisePlayerDiv{
+			position:absolute;
+			text-align:center;
+			min-width:12em;
+			height:5em;
+			background:none;
+			background:rgba(242,249,41,1);
+			background:#c1b939;
+			top:0;right:-10em;
+			color:#fff;
+			text-shadow: 1px 3px 1px rgba(26,35,5,1);
+			border-radius:2px 2px 2px 2xp;
+			padding-right:1em;
+			padding-left:1em;
+			display:none;
+			border-radius:.5em;
+			}
+			.paddingThin{
+				padding:.5em
+				
+			}
+			.imgEnemyInside{
+				width:75%;
+				position:absolute;
+				bottom:0;
+			}
+			
+			.imgCorrectWrongContainer{
+				position:absolute;bottom:-3.5em;background:none;width:5em;height:3em;
+				text-align:center;
+			}
+			.imageOnRight, .imageOnLeft{
+				background:rgba(255,255,255,.2);
+				border:thin solid rgba(255,255,255,.5);
+				border-radius:.5em;
+				margin-bottom:1em;
+				
+			}
+	</style>
+	
+	
+</head>
+
+<body class="" style="position:relative">
+  <!-- AUDIO =================================================================================================================================================================================================== 	
+			<audio controls autoplay loop  style="display:none;" ><source src="audio/bg-2.mp3" type="audio/ogg"></audio>
+			
+		<!-- END AUDIO =================================================================================================================================================================================================== -->
+		
+	<div style="position:absolute;background:none;bottom:0;left:0;z-index:99999;" class="col-lg-2 col-md-3 col-sm-3 col-xs-3 ">
+		
+		
+		<img src="img/png/char-mentor.png" alt="" class="imgCharMentor img-thumbnail noBG col-lg-12" style="border:0;position:relative;bottom:0;"  />
+		<div class="praisePlayerDiv">
+					<div class="txtPraisePlayer">Good Job!</div>
+					<img src="img/png/pointer-test.png" alt=""  style="position:absolute;bottom:-5px;left:-5px;width:15%" />
+					
+					<div class="imgCorrectWrongContainer">
+						<img class="imgCorrectWrong img-thumbnail noBG borderless" src="img/png/correct.png" alt="" />
+					</div>
+		</div>
+		
+	
+	</div>
+	<div class="leftWindow"></div>
+	<div class="rightWindow"></div>
+     <div id="wrapper" style="">
+		
+		<div style="display:none">
+		
+		<h2 >testCounter:<span class="txtTestCounter"></span></h2>
+		<h2 >Counter:<span class="txtEnemyCounter"></span></h2>
+		<h2 >Correct:<span class="txtCorrectAnswerPoints"></span></h2>
+		<h2 >Wrong:<span class="txtWrongAnswerPoints"></span></h2>
+		</div>
+		<!--<div id="page-wrapper">-->
+		<div id="main-platform" style="">
+			<img src="img/png/castle/castle-addition.png" class="selectedCastle img-thumbnail noBG borderless" width="25%" alt="" style="position:absolute;bottom:0;left:-1em;"/>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"  style="position:fixed:left:2em;top:2em;">
+					<img src="img/png/castle/txt-addition.png" class="selectedCastleTxt img-thumbnail noBG borderless col-lg-8 col-md-8 col-sm-10 col-xs-10" alt="" />
+			
+				</div>
+				
+					<div style="" class="progressBarDivContainer row col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<div style="" class="progressBarDiv" > 
+							<div class="playerHead"><img src="img/png/player-head-m.png"  alt=""class="playerHeadContainer" /></div>
+							
+						</div>
+						<div class="progressBarMedalContainer">
+							<div><img src="img/png/progress-medal.png"  alt="" class="progressBarMedal" height=".5%" /></div>
+						</div>
+						
+					</div>
+
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<img  src="img/png/btn-pause.png" class="btn-pause img-thumbnail noBG borderless col-lg-6 col-md-6 col-sm-6 col-xs-10" alt="" style="position:fixed;top:0;right:0;width:10em;z-index:999999" />
+
+				</div>
+				
+			
+			</div>
+			<!--
+			<img src="img/png/stage-title.png" class="img-thumbnail noBG borderless col-lg-2 col-md-2 col-sm-4 col-xs-4" style="position:absolute;top:0;left:0;z-index:11000" alt="" />
+			<div class="" style="position:fixed;top:0;right:0;z-index:11000;background:red;" >
+				<img src="img/png/btn-pause.png" class="testko img-thumbnail noBG borderless col-lg-6 col-md-4 col-sm-4 col-xs-4" style="float:right;position:relative" alt="" />
+			</div>
+			
+			<div class="col-lg-12" style="position:absolute;top:0;z-index:11000;">
+				<img  src="img/png/progress-bar.png" class="img-thumbnail noBG borderless col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4" alt="" />
+			</div>
+			
+			-->
+		<!--<div class="animated rollOut" style="width:100px; height:100px;background:red;"></div>-->
+			<div id="main-char">
+				<!--
+				<div class="praisePlayerDiv">
+					<div class="txtPraisePlayer">Good Job!</div>
+				</div>
+				-->
+			</div>
+			<div id="enemyRespawn">
+			<!--<div class="enemy-sample enemy-box"></div>-->
+			</div>
+		</div>
+        
+		
+		<div id="main-question" >
+			<div class="mainQuestionContainer col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+						<div class="imageOnLeft col-lg-5 col-md-5 col-sm-5 col-xs-5" >
+							
+							
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<img  src="img/png/operators/operation-plus.png" class="operatorToUse paddingThin img-thumbnail noBG borderless col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-2" alt="" />
+							
+							
+						</div>
+						<div class="imageOnRight col-lg-5 col-md-5 col-sm-5 col-xs-5">
+							
+						</div>
+			
+				<div class=" col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input  id="question" type="button" value="Test" class="btn btn-primary  col-lg-12 col-md-12 col-sm-12 col-xs-12" disabled/>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<input id="choice1" type="button" value="Test" class="btn-choice btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" />
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<input id="choice2" type="button" value="Test" class="btn-choice btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" />
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<input id="choice3" type="button" value="Test" class="btn-choice btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" />
+					</div>
+					<input type="text" name="" id="correct" style="display:none" />
+				</div>
+				</div>
+			</div>
+		</div>
+			<div style="display:none">
+			<input type="button" id="showHideQuestion" class="btn btn-primary col-lg-12" value="btn tes show/hide" />
+			<input type="button" id="btn-1" class="btn btn-primary col-lg-12" value="btn 1 START GAME TIMER" />
+			<input type="button" id="btn-2" class="btn btn-primary col-lg-12" value="btn 2 ADD ENEMY" />
+			<input type="button" id="btn-3" class="btn btn-primary col-lg-12" value="btn 3 ATTACK" />
+			<input type="button" id="btn-4" class="btn btn-primary col-lg-12" value="btn 4 STOP TIME" />
+			<input type="button" id="btn-5" class="btn btn-primary col-lg-12" value="btn 5 forwardEnemy()" />
+			<input type="button" id="btn-6" class="btn btn-primary col-lg-12" value="btn 6 stopAnimation of enemy" />
+			</div>
+		
+		
+		
+
+        <!--</div>-->
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+	
+	
+	<div id="gameOverAllModal" class="modal fade specialModalContainer" style="z-index:999999" data-backdrop="static">
+	
+		<div class="modal-dialog" >
+			<div class="modal-content" >
+				<!--
+				<div class="modal-header">
+					
+				</div>
+				
+				-->
+				<div class="modal-header">
+					
+					<center><h1 class="modal-title endModalTitle">Game Over</h1></center>
+					</div>
+				<div class="modal-body">
+					
+					<center>
+					
+					
+					<h3><span class="txtPointsRank"></span></h3>
+					<h3> <span class="txtLocalUsername"></span></h3>
+					<h3>Your Score: <span class="txtCorrectAnswerPoints"></span></h3>
+					<h3>You gained <span class="txtNoOfStars"></span>!</h3>
+					<div class="scoreStarContainer row col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+						
+					</div>
+					<center>
+				</div>
+				<div class="modal-footer">
+					<a href="main-game-page.html"><button type="button" class="btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12">Play Again</button></a>
+					<a href="index.html"><button type="button" class="btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12">Main Menu</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- ======= pauseModal START ====== -->
+	<div id="pauseModal" class="modal fade specialModalContainer" style="z-index:999999;" data-backdrop="static">
+	
+		<div class="modal-dialog" style="margin-top:10%;width:50%" >
+			<div class="modal-content" >
+				<!--
+				<div class="modal-header">
+					
+				</div>
+				
+				-->
+				<div class="modal-header">
+					<center><h1 class="modal-title endModalTitle">Game Paused</h1></center>
+					</div>
+				<div class="modal-body">
+					<button type="button" class="btn-resume btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12">Resume</button>
+					<a href="main-game-page.html"><button type="button" class="btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12">Play Again</button></a>
+					<a href="index.html"><button type="button" class="btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12">Main Menu</button></a>
+				
+					
+				</div>
+				<div class="modal-footer">
+					</div>
+			</div>
+		</div>
+	</div>
+	<!-- ======= pauseModal END ====== -->
+	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--
+	<script src="js/quizArray.js"></script>
+	-->
+	<script src="js/quizzes/quizArray-addition.js"></script>
+	<script src="js/quizzes/quizArray-subtraction.js"></script>
+	<script src="js/quizzes/quizArray-multiplication.js"></script>
+	<script src="js/quizzes/quizArray-division.js"></script>
+	<script src="js/jq-custom.js"></script>
+	<script src="js/jq-custom-animations.js"></script>
+	<script src="js/jquery.transit.js"></script>
+	
+	
+	<script src="phonegap.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var myMedia;
+			$("body").transition({opacity:1},1000);
+		
+			storeQuizArrayToLocalStorage();
+			/* for QUIZ FUNCTIONS START */
+			gameStart();
+			/* for QUIZ FUNCTIONS END */
+			openWindow();
+			//startGameTimer();
+			//addEnemy();
+			changeCharElements();
+			
+			$("#btn-1").click(function(){
+				startGameTimer();
+			});
+			$("#btn-2").click(function(){
+				addEnemy();
+			});
+			$("#btn-3").click(function(){
+				removeEnemy();
+			});
+			$("#btn-4").click(function(){
+				stopTimer();
+			});
+			
+			$("#btn-5").click(function(){
+				forwardEnemy();
+			});$("#btn-6").click(function(){
+				$("#enemyRespawn").children(".enemy-sample").stop();
+				$("#enemyRespawn").children(".enemy-box").stop();
+					
+			});
+			
+			
+			$(".animated").addClass("enemyForwardClass");
+	
+		
+
+	$(".testko").hover(function(){alert("adas");});
+	
+	playAudio('audio/instrumental.mp3');
+			//var my_media = null;
+			<!--=================================== AUDIO start ===================================================-->
+			
+			function playAudio(src){
+				if (device.platform == 'Android') {
+				src = '/android_asset/www/' + src;
+				}
+				myMedia = new Media(src, onSuccess, onError);
+				// Play audio
+				myMedia.play();
+
+				
+			}
+			<!--=================================== AUDIO END ===================================================-->
+		
+		});
+	
+	</script>
+
+</body>
+
+</html>

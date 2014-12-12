@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Alamath - Arithmetic Game</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style-custom.css">
+	<style type="text/css">
+	html{
+		background:none;
+	}
+	body{
+		opacity:0;
+	}
+	.mainCointainer{
+			margin-top:3%;
+			border:#2b3b08 solid 5px;
+			background:#7aaf21;
+			color:#fff;
+			text-shadow: 0px 1px 0px rgba(26,35,5,.8);
+			padding:2em;
+			
+	}
+	body{
+		background:url("img/png/Cloud-Background-darkbg.png") no-repeat center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+			  
+	}
+	.nav, tab-content{
+		
+	}
+	.mainCointainer a{
+		color:#fff;
+		
+	}
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+		background:#39550c;
+		color:#fff;
+		border:0;
+	}
+	a:focus{
+		outline: thin dotted;
+		outline-offset: -2px;
+	}
+	a:hover{
+		color:#353732;
+		
+	}
+	
+	#myTab1{
+		margin:1em;
+	}
+	#progressTab{
+		
+	}
+	.nav-tabs a{
+		background:#557f12;
+	}
+	.nav {
+		
+		border:0;
+	}
+	#myTabContent1{
+		background:red;
+	}
+	.btn_close{
+		position:absolute;
+		right:-2em;
+		top:-2em;
+		z-index:999999;
+		width:7em;
+	}
+	</style>
+			<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jq-custom-animations.js"></script>
+		<script src="js/jquery.transit.js"></script>
+		<script src="js/Chart.js"></script>
+	</head>
+	<body>
+	<!-- AUDIO =================================================================================================================================================================================================== -->		
+		<!--	<audio controls autoplay loop  style="display:none;"><source src="audio/1.ogg" type="audio/ogg"></audio>
+			
+		<!-- END AUDIO =================================================================================================================================================================================================== -->
+		
+	<!--main cointainer START -->
+	<div class="mainCointainer col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+		<img src="img/png/btn-x.png" alt="" class="btn_close btn-back-to-main-menu" />
+			<center><h2 class="title">Player's Status</h2></center>
+			<ul id="myTab1"  class="nav nav-tabs">
+						<li class="active" >
+							<a href="#progressTab" data-toggle="tab" id="btnProgressTab">
+							Scores Progress
+							</a>
+						</li>
+						<li>
+							<a href="#strengthsTab" data-toggle="tab" id="btnStrengthsTab" >
+							Strengths
+							</a>
+						</li>
+						<li>
+							<a href="#thingsToImproveTab" data-toggle="tab" id="btnThingsToImprove" >
+							Things to Improve
+							</a>
+						</li>
+			</ul>
+			
+			<div id="myTabContent1" class="tab-content">
+					   <div class="tab-pane fade in active" id="progressTab">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div style="width:100% margin:0 auto;overflow:visible" >
+								<!-- 2nd tab menu START -->
+								<ul id="myTab2"  class="nav nav-tabs">
+									<li class="" >
+										<a href="#progressTab" data-toggle="tab" class="btnProgressAddtion btnBarChart">
+										+
+										</a>
+									</li>
+									<li>
+										<a href="#progressTab" data-toggle="tab" class="btnProgressSubstraction btnBarChart">
+										-
+										</a>
+									</li>
+									<li>
+										<a href="#progressTab" data-toggle="tab" class="btnProgressMultiplication btnBarChart">
+										X
+										</a>
+									</li>
+									<li>
+										<a href="#progressTab" data-toggle="tab" class="btnProgressDivision btnBarChart">
+										%
+										</a>
+									</li>
+									<!--
+									<li>
+										<a href="#progressTab" data-toggle="tab" class="btnProgressAll">
+										All
+										</a>
+									</li>
+									-->
+								</ul>
+								<!-- 2nd tab menu END -->
+								
+								<div id="myTabContent2" class="tab-content">
+									<div class="tab-pane fade in active" id="progressTab">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="border:thin solid #2e450a;margin:.2em;overflow:auto;background:#39550c;">
+											<h2>Scores in <span class="txtSubject">Addition</span></h2>
+											<h3 class="txtBarError">asd</h3>
+											<canvas id="canvasBarChart" height="350" width="1000" style="margin-left:-10px;"></canvas>
+										</div>
+									</div>
+									
+								</div>
+							
+							</div>
+						</div>
+					   </div>
+					   
+					   <div class="tab-pane fade" id="strengthsTab">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								
+								<center>
+								<div id="canvas-holder" style="margin:1em;background:#39550c;padding:.5em">
+									<center><h1>Your Strengths</h1>
+									<h2><span class="txtNoStrengths"></span></h2></center>
+									<canvas id="chart-area-strengths" width="300" height="300"/>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<!--addition START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#F7464A;min-height:1em;border:thin solid #cc2c30">Addition</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalCorrectAnswerAddition"></span></div>
+										
+										
+										
+									</div><!--addition END-->
+									
+									<!--substraction START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#2d7dec;min-height:1em;border:thin solid #49a5c0">Substraction</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalCorrectAnswerSubtraction"></span></div>
+										
+										
+										
+									</div><!--substraction END-->
+									
+									<!--multiplication START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#358435;min-height:1em;border:thin solid #358435">Multiplication</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalCorrectAnswerMultiplication"></span></div>
+										
+										
+										
+									</div><!--multiplication END-->
+									<!--Division START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#e38c12;min-height:1em;border:thin solid #f6a531">Division</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalCorrectAnswerDivision"></span></div>
+										
+										
+										
+									</div><!--Division END-->
+									
+									
+								</div>
+								</center>
+							</div>
+						</div>
+					   <div class="tab-pane fade" id="thingsToImproveTab">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								
+								<div id="canvas-holder" style="margin:1em;background:#39550c;padding:.5em">
+									<center><h1>Things to Improve</h1>
+									<h2><span class="txtNoThingsToImprove"></span></h2></center>
+									<center><canvas id="chart-area-things-to-improve" width="300" height="300"/></center>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<!--addition START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#F7464A;min-height:1em;border:thin solid #cc2c30">Addition</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalWrongAnswerAddition"></span></div>
+										
+										
+										
+									</div><!--addition END-->
+									
+									<!--substraction START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#2d7dec;min-height:1em;border:thin solid #49a5c0">Substraction</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalWrongAnswerSubtraction"></span></div>
+										
+										
+										
+									</div><!--substraction END-->
+									
+									<!--multiplication START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#358435;min-height:1em;border:thin solid #358435">Multiplication</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalWrongAnswerMultiplication"></span></div>
+										
+										
+										
+									</div><!--multiplication END-->
+									<!--Division START-->
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background:#39550c;padding:.5em">
+										
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#e38c12;min-height:1em;border:thin solid #f6a531">Division</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-top:thin solid #1a2305;"></div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Points: <span class="txtLocalWrongAnswerDivision"></span></div>
+										
+										
+										
+									</div><!--Division END-->
+									
+									
+								</div>
+								
+							</div>
+						</div>
+			</div>
+			
+			
+		
+	</div><!--main cointainer END -->
+	<script type="text/javascript" src="phonegap.js"></script>
+	<script type="text/javascript"> 
+		$(document).ready(function(){
+			var myMedia;
+		$("#myTabContent2").hide();
+		$(".btnBarChart").click(function(){
+			$("#myTabContent2").show();
+		});
+		
+		$("body").transition({opacity:1},1000);
+		
+		<!-- for bootstrap tabs script START-->
+		$(function(){
+			  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			  // Get the name of active tab
+			  var activeTab = $(e.target).text(); 
+			  // Get the name of previous tab
+			  var previousTab = $(e.relatedTarget).text(); 
+			  $(".active-tab span").html(activeTab);
+			  $(".previous-tab span").html(previousTab);
+		   });
+		});<!-- for bootstrap tabs script END-->
+		
+		
+		
+		<!-- ============================ get chart Details ADDITION --START-- ========================================= -->
+		var scoreOnlyAddition = [];
+		var dateOnlyAddition = [];
+		var scoreArrayAddition = JSON.parse(window.localStorage.getItem("localCorrectScoreArrayAddition"));
+		if(scoreArrayAddition == null || scoreArrayAddition == "null"){
+			scoreArrayAddition = [];
+			$(".txtBarError").html("No record yet");
+		}else{
+			$(".txtBarError").html("");
+			for(i=0,numberingLang = 1;i < scoreArrayAddition.length; i++,numberingLang++){
+				var places = "";
+				if(numberingLang == 1){
+					places = "st Game";
+				}else if(numberingLang == 2){
+					places = "nd Game";
+				}else if(numberingLang == 3){
+					places = "rd Game";
+				}else{
+					places = "th Game";
+				}
+				scoreOnlyAddition.push(scoreArrayAddition[i]);
+				dateOnlyAddition.push(numberingLang+""+places);
+			
+				
+			}
+		}
+		var randomScalingFactor = function(){ return Math.round(Math.random()*15)};
+		var barChartDataAddition = {
+			labels : dateOnlyAddition,
+			datasets : [
+				{
+					label: "Progress Data set",
+					fillColor : "rgba(220,220,220,0.4)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : scoreOnlyAddition,
+					
+				}
+			]
+
+		}
+		
+		<!-- ============================ get chart Details ADDITION --END-- ========================================= -->
+		
+		<!-- ============================ get chart Details Subtraction --START-- ========================================= -->
+		var scoreOnlySubtraction = [];
+		var dateOnlySubtraction = [];
+		var scoreArraySubtraction = JSON.parse(window.localStorage.getItem("localCorrectScoreArraySubtraction"));
+		if(scoreArraySubtraction == null || scoreArraySubtraction == "null"){
+			scoreArraySubtraction = [];
+			$(".txtBarError").html("No record yet");
+		}else{
+			$(".txtBarError").html("");
+			for(i=0,numberingLang = 1;i < scoreArraySubtraction.length; i++,numberingLang++){
+				var places = "";
+				if(numberingLang == 1){
+					places = "st Game";
+				}else if(numberingLang == 2){
+					places = "nd Game";
+				}else if(numberingLang == 3){
+					places = "rd Game";
+				}else{
+					places = "th Game";
+				}
+				scoreOnlySubtraction.push(scoreArraySubtraction[i]);
+				dateOnlySubtraction.push(numberingLang+""+places);
+			
+				
+			}
+		}
+		var randomScalingFactor = function(){ return Math.round(Math.random()*15)};
+		var barChartDataSubtraction = {
+			labels : dateOnlySubtraction,
+			datasets : [
+				{
+					label: "Progress Data set",
+					fillColor : "rgba(220,220,220,0.4)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : scoreOnlySubtraction
+				}
+			]
+
+		}
+		
+		<!-- ============================ get chart Details Subtraction --END-- ========================================= -->
+		
+		
+		<!-- ============================ get chart Details Multiplication --START-- ========================================= -->
+		var scoreOnlyMultiplication = [];
+		var dateOnlyMultiplication = [];
+		var scoreArrayMultiplication = JSON.parse(window.localStorage.getItem("localCorrectScoreArrayMultiplication"));
+		if(scoreArrayMultiplication == null || scoreArrayMultiplication == "null"){
+			scoreArrayMultiplication = [];
+			$(".txtBarError").html("No record yet");
+		}else{
+			$(".txtBarError").html("");
+			for(i=0,numberingLang = 1;i < scoreArrayMultiplication.length; i++,numberingLang++){
+				var places = "";
+				if(numberingLang == 1){
+					places = "st Game";
+				}else if(numberingLang == 2){
+					places = "nd Game";
+				}else if(numberingLang == 3){
+					places = "rd Game";
+				}else{
+					places = "th Game";
+				}
+				scoreOnlyMultiplication.push(scoreArrayMultiplication[i]);
+				dateOnlyMultiplication.push(numberingLang+""+places);
+			
+				
+			}
+		}
+		var randomScalingFactor = function(){ return Math.round(Math.random()*15)};
+		var barChartDataMultiplication = {
+			labels : dateOnlyMultiplication,
+			datasets : [
+				{
+					label: "Progress Data set",
+					fillColor : "rgba(220,220,220,0.4)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : scoreOnlyMultiplication
+				}
+			]
+
+		}
+		
+		<!-- ============================ get chart Details Multiplication --END-- ========================================= -->
+		
+		
+		<!-- ============================ get chart Details Division --START-- ========================================= -->
+		var scoreOnlyDivision = [];
+		var dateOnlyDivision = [];
+		var scoreArrayDivision = JSON.parse(window.localStorage.getItem("localCorrectScoreArrayDivision"));
+		if(scoreArrayDivision == null || scoreArrayDivision == "null"){
+			scoreArrayDivision = [];
+			$(".txtBarError").html("No record yet");
+		}else{
+			$(".txtBarError").html("");
+			for(i=0,numberingLang = 1;i < scoreArrayDivision.length; i++,numberingLang++){
+				var places = "";
+				if(numberingLang == 1){
+					places = "st Game";
+				}else if(numberingLang == 2){
+					places = "nd Game";
+				}else if(numberingLang == 3){
+					places = "rd Game";
+				}else{
+					places = "th Game";
+				}
+				scoreOnlyDivision.push(scoreArrayDivision[i]);
+				dateOnlyDivision.push(numberingLang+""+places);
+			
+				
+			}
+		}
+		var randomScalingFactor = function(){ return Math.round(Math.random()*15)};
+		var barChartDataDivision = {
+			labels : dateOnlyDivision,
+			datasets : [
+				{
+					label: "Progress Data set",
+					fillColor : "rgba(220,220,220,0.4)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : scoreOnlyDivision
+				}
+			]
+
+		}
+		
+		<!-- ============================ get chart Details Division --END-- ========================================= -->
+	function generateBarChart(selectedBar){
+		var steps = 15;
+		var a = selectedBar;
+		
+		var ctxAddition = document.getElementById("canvasBarChart").getContext("2d");
+		window.myBar = new Chart(ctxAddition).Bar(a, {
+			responsive: false,
+			scaleOverride: true,
+			scaleSteps: steps,
+			scaleStepWidth: 1,
+			scaleStartValue: 0,
+			animationSteps: 5,
+			scaleFontColor: "#ffffff",
+			showTooltips: false,
+		});
+	}
+	function generateChartSubstraction(){
+		var steps = 15;
+		var ctxSubstraction = document.getElementById("canvasAdditionSubstraction").getContext("2d");
+		window.myBar = new Chart(ctxSubstraction).Bar(barChartDataAddition, {
+			responsive: true,
+			scaleOverride: true,
+			scaleSteps: steps,
+			scaleStepWidth: 1,
+			scaleStartValue: 0,
+			
+		
+		});
+	}
+	
+	
+	$("#btnProgressTab").click(function(){
+		
+	});
+	//generateChartSubstraction();
+	
+		$(".btnProgressAddtion").click(function(){
+			$(".txtSubject").html("Addition");
+			generateBarChart(barChartDataAddition);
+		});
+	
+		$(".btnProgressSubstraction").click(function(){
+			$(".txtSubject").html("Substraction");
+			generateBarChart(barChartDataSubtraction);
+		});
+		$(".btnProgressMultiplication").click(function(){
+			$(".txtSubject").html("Multiplication");
+			generateBarChart(barChartDataMultiplication);
+		});
+		$(".btnProgressDivision").click(function(){
+			$(".txtSubject").html("Division");
+			generateBarChart(barChartDataDivision);
+		});
+		/*
+		$(".btnProgressAll").click(function(){
+			$(".txtSubject").html("all Operations");
+		});
+		*/
+		
+		playAudio('1.mp3');
+			//var my_media = null;
+			<!--=================================== AUDIO start ===================================================-->
+			
+			 function playAudio(src) {
+            if (device.platform == 'Android') {
+                src = '/assets/www/' + src;
+            }
+
+            var media = new Media(src, success, error_error);
+
+            media.play();
+        }
+
+        function success() {
+            // ignore
+			alert("success");
+        }
+
+        function error_error(e) {
+            alert('great error');
+            alert(e.message);
+        }
+			<!--=================================== AUDIO END ===================================================-->
+		});
+	
+	
+	//for strengths pie START
+			var localCorrectAnswerAddition = (window.localStorage.getItem("localCorrectAnswerAddition"));
+			if(localCorrectAnswerAddition == undefined || localCorrectAnswerAddition == "undefined" || localCorrectAnswerAddition == NaN || localCorrectAnswerSubtraction == "null" ){
+				localCorrectAnswerAddition = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localCorrectAnswerAddition);
+			}
+			$(".txtLocalCorrectAnswerAddition").html(localCorrectAnswerAddition);
+			
+			var localCorrectAnswerSubtraction = (window.localStorage.getItem("localCorrectAnswerSubtraction"));
+			if(localCorrectAnswerSubtraction == undefined || localCorrectAnswerSubtraction == "undefined" || localCorrectAnswerSubtraction == NaN || localCorrectAnswerSubtraction == "null" ){
+				localCorrectAnswerSubtraction = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localCorrectAnswerSubtraction);
+			}
+			$(".txtLocalCorrectAnswerSubtraction").html(localCorrectAnswerSubtraction);
+				
+				
+				
+			var localCorrectAnswerMultiplication = (window.localStorage.getItem("localCorrectAnswerMultiplication"));
+			if(localCorrectAnswerMultiplication == undefined || localCorrectAnswerMultiplication == "undefined" || localCorrectAnswerMultiplication == NaN || localCorrectAnswerMultiplication == "null" ){
+				localCorrectAnswerMultiplication = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localCorrectAnswerMultiplication);
+			}
+			$(".txtLocalCorrectAnswerMultiplication").html(localCorrectAnswerMultiplication);
+			
+			var localCorrectAnswerDivision = (window.localStorage.getItem("localCorrectAnswerDivision"));
+			if(localCorrectAnswerDivision == undefined || localCorrectAnswerDivision == "undefined" || localCorrectAnswerDivision == NaN || localCorrectAnswerDivision == "null" ){
+				localCorrectAnswerDivision = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localCorrectAnswerDivision);
+			}
+			$(".txtLocalCorrectAnswerDivision").html(localCorrectAnswerDivision);
+			
+			
+			if(localCorrectAnswerDivision == 0 && localCorrectAnswerMultiplication == 0 && localCorrectAnswerSubtraction == 0 && localCorrectAnswerAddition == 0){
+				$(".txtNoStrengths").html("Dont have any record yet");
+			}else{
+				$(".txtNoStrengths").html("");
+			}
+			var pieDataStrengths = [
+				{
+					value: parseInt(localCorrectAnswerDivision),
+					color: "#e38c12",
+					highlight: "#f59814",
+					label: "Division"
+				},
+				{
+					value: parseInt(localCorrectAnswerMultiplication),
+					color: "#358435",
+					highlight: "#3e9a3e",
+					label: "Multiplication"
+				},
+				{
+					value: parseInt(localCorrectAnswerSubtraction),
+					color: "#2d7dec",
+					highlight: "#3f8df8",
+					label: "Subtraction"
+				},
+				{
+					value: parseInt(localCorrectAnswerAddition),
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "Addition"
+				}
+				
+
+			];
+
+			function generatePieStrengths(){
+				var ctx = document.getElementById("chart-area-strengths").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieDataStrengths,{
+					segmentShowStroke : true,
+					segmentStrokeWidth : 1,
+					
+				});
+				
+			};
+			
+			
+			
+	$("#btnStrengthsTab").click(function(){
+		generatePieStrengths();
+	});
+	//for strengths pie END
+	
+	
+	//for things to improves pie START
+			var localWrongAnswerAddition = (window.localStorage.getItem("localWrongAnswerAddition"));
+			if(localWrongAnswerAddition == undefined || localWrongAnswerAddition == "undefined" || localWrongAnswerAddition == NaN || localCorrectAnswerSubtraction == "null" ){
+				//alert(localWrongAnswerAddition);
+				localWrongAnswerAddition = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localWrongAnswerAddition);
+			}
+			$(".txtLocalWrongAnswerAddition").html(localWrongAnswerAddition);
+			
+			
+			var localWrongAnswerSubtraction = (window.localStorage.getItem("localWrongAnswerSubtraction"));
+			if(localWrongAnswerSubtraction == undefined || localWrongAnswerSubtraction == "undefined" || localWrongAnswerSubtraction == NaN || localCorrectAnswerSubtraction == "null" ){
+				localWrongAnswerSubtraction = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localWrongAnswerSubtraction);
+			}
+			$(".txtLocalWrongAnswerSubtraction").html(localWrongAnswerSubtraction);
+			
+			
+			var localWrongAnswerMultiplication = (window.localStorage.getItem("localWrongAnswerMultiplication"));
+			if(localWrongAnswerMultiplication == undefined || localWrongAnswerMultiplication == "undefined" || localWrongAnswerMultiplication == NaN || localCorrectAnswerSubtraction == "null" ){
+				localWrongAnswerMultiplication = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localWrongAnswerSubtraction);
+			}
+			$(".txtLocalWrongAnswerMultiplication").html(localWrongAnswerMultiplication);
+			
+			var localWrongAnswerDivision = (window.localStorage.getItem("localWrongAnswerDivision"));
+			if(localWrongAnswerDivision == undefined || localWrongAnswerDivision == "undefined" || localWrongAnswerDivision == NaN || localCorrectAnswerSubtraction == "null" ){
+				localWrongAnswerDivision = 0;
+				//alert(localCorrectAnswerSubtraction);
+			}else{
+				parseInt(localWrongAnswerSubtraction);
+			}
+			
+			if(localWrongAnswerDivision == 0 && localWrongAnswerMultiplication == 0 && localWrongAnswerSubtraction == 0 && localWrongAnswerAddition == 0){
+				$(".txtNoThingsToImprove").html("Dont have any record yet");
+			}else{
+				$(".txtNoThingsToImprove").html("");
+			}
+			$(".txtLocalWrongAnswerDivision").html(localWrongAnswerDivision);
+			var pieDataThingsToImprove = [
+				{
+					value: parseInt(localWrongAnswerDivision),
+					color: "#e38c12",
+					highlight: "#f59814",
+					label: "Division"
+				},
+				{
+					value: parseInt(localWrongAnswerMultiplication),
+					color: "#358435",
+					highlight: "#3e9a3e",
+					label: "Multiplication"
+				},
+				{
+					value: parseInt(localWrongAnswerSubtraction),
+					color: "#2d7dec",
+					highlight: "#3f8df8",
+					label: "Subtraction"
+				},
+				{
+					value: parseInt(localWrongAnswerAddition),
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "Addition"
+				}
+				
+
+			];
+
+			function generatePieThingsToImprove(){
+				var ctx = document.getElementById("chart-area-things-to-improve").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieDataThingsToImprove,{
+					segmentShowStroke : true,
+					segmentStrokeWidth : 1,
+				});
+				
+			};
+			
+			
+			
+	$("#btnThingsToImprove").click(function(){
+		generatePieThingsToImprove();
+	});
+	$(".btn-back-to-main-menu").click(function(){
+	location.href = "index.html";
+	});
+	//for strengths pie END
+
+	</script>
+
+	</body>
+</html>
