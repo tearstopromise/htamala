@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -28,29 +28,18 @@
 	<style type="text/css">
 	body{
 		opacity:0;
-		
 	}
-	html{
-		position:relative;
-		height:100%;
-		width:100%;
-		overflow:auto;
-		position:fixed;
-		
-		
-	}
-		body{
-		
-			background:url("img/png/Cloud-Background.png") no-repeat center center fixed; 
+		html{
+			posiiton:relative;
+			background:url("img/png/Cloud-Background-darkbg.png") no-repeat center fixed; 
 			  -webkit-background-size: cover;
 			  -moz-background-size: cover;
 			  -o-background-size: cover;
 			  background-size: cover;
-			  overflow:auto;
-				font-size:1em;
-		}
-		.btn{
+			overflow:hidden;
 			
+			position:fixed;
+			overflow:hidden;
 		}
 		.cloudToLeft{
 			position:relative;
@@ -76,66 +65,37 @@
 			top:40%;
 		}
 		#wrapper{
-			top:-1200px;
+			margin-top:.5em;
 			position:relative;
 		}
 		.show{
 			display:visible;
 		}
-		.noBG{
-			padding:0;
-		}
-		.row{
-			margin:0;
-		}
-		.selectedChar{
-			padding:.5em;
-			background:#77b118;
-			background:rgba(0,0,0,.2);
-			border-radius:2em;
-		}
-		.charSelectOptionImg{
-			
-		}
-		
-		.btn_close{
-			position:absolute;
-			right:-3em;
-			top:-2em;
-			z-index:999999;
-			width:7em;
-		}
-		.modal-header{
-			padding:0 2em;
-			margin:0;
-		}
-		.modal-body{
-			padding:0 .5em;
-			margin:0;
-			margin-top:-2em;
-			
-		}
-		.modal-content{
-			background:#7AAF21;
-			
-			
-		}
-		.splashKo{
+		body{
 			position:fixed;
-			width:100%;
-			height:100%;
-			background:#ee6920;
-			z-index:999999999999;
+			overflow:hidden;
+			background:none;
+			 -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
 		}
-		.splashImages{
-			margin-top:35%;
+		.instructionsWrapper{
+			background:rgba(0,0,0,.5);
+			position:absolute;
+			bottom:0;
+			height:50%;
+			padding:2em;
+			color:#fff;
+			font-size:1em;
+			bottom:-50%;
+			
 		}
-		.splashImages1, .splashImages2{
-			opacity:0;
+		.instructionContainer{
+		position:relative;overflow:auto;height:100%;
 		}
-		
-		.form-control{
-			text-align:center;
+		.levelSelected{
+			background:rgba(0,0,0,.5);
 		}
 	</style>
 	
@@ -144,278 +104,199 @@
 </head>
 
 <body>
-	<div class="splashKo" style="">	
-		<div class="row splashImages" style="display:none;">
-		<img src="img/pmaw_logo.png" alt=""  class="img-thumbnail splashImages1" style="margin:0 auto;display:block;background:none;border:0px;"/>
-		<img src="img/pmaw_txt.png" alt=""  class="img-thumbnail splashImages2" style="margin:0 auto;display:block;background:none;border:0px;"/>
-	</div>
-	
-	</div>
+
 	<!--
 	<div class="leftWindow"></div>
 	<div class="rightWindow"></div>
 	-->
-	<img src="img/png/clouds/Cloud-1.png" alt="" class="cloud cloud-1 cloudToLeft"/>
-	<img src="img/png/clouds/Cloud-2.png" alt="" class="cloud cloud-2 cloudToLeft"/>
-	<img src="img/png/clouds/Cloud-3.png" alt="" class="cloud cloud-3 cloudToLeft"/>
-	<img src="img/png/clouds/Cloud-5.png" alt="" class="cloud cloud-1 cloudToRight"/>
-	<img src="img/png/clouds/Cloud-6.png" alt="" class="cloud cloud-2 cloudToRight"/>
-	<img src="img/png/clouds/Cloud-7.png" alt="" class="cloud cloud-3 cloudToRight"/>
-     <div id="wrapper" >
-       
-        <!--<div id="page-wrapper">-->
-		<!-- main-menu-wrapper START-->
-		<div id="main-menu-wrapper" style="margin-top:8%;">
+	<div class="darkBg"></div>
+	 <div id="wrapper" >
+	 
+		<img src="img/png/btn-to-left.png" alt="" style="position:absolute;top:0;left:0;z-index:999999" class="btn btn-back-to-main-menu" />
 		
-      <!-- AUDIO =================================================================================================================================================================================================== -->		
-			<!--<audio controls autoplay loop  style="display:none;"><source src="audio/1.ogg" type="audio/ogg"></audio>-->
-			
-		<!-- END AUDIO =================================================================================================================================================================================================== -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-					<img style="" class="img-thumbnail noBG borderless col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" src="img/png/alamath-title-green.png" alt="" /> 
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<img id="btn-game-start" class="img-thumbnail noBG borderless col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5" src="img/png/btn-play-circle.png" alt="" />
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-2">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<img  class="btn-to-analytics img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12" src="img/png/btn-analytics.png" alt="" /> 
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						
-						<img  class="btn-to-myroom img-thumbnail noBG borderless  col-lg-12 col-md-12 col-sm-12 col-xs-12" src="img/png/btn-my-room.png" alt="" /> 
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						
-						<img  class="btn-to-option img-thumbnail noBG borderless  col-lg-12 col-md-12 col-sm-12 col-xs-12" src="img/png/btn-options.png" alt="" /> 
-						</div>
-					
-				</div>
-				
-			
-        </div><!-- main-menu-wrapper END-->
-            
-
-        <!--</div>-->
-        <!-- /#page-wrapper -->
-
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+				<center style="color:#fff">
+				<h2>Adventure Map</h2>
+				<h3>Select Kingdom</h3>
+				</center>
+				<img src="img/png/level-addition.png" alt="" id="levelAddition" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-subtraction.png" alt="" id="levelSubtraction" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-multiplication.png" alt="" id="levelMultiplication" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+				<img src="img/png/level-division.png" alt="" id="levelDivision" class="levelSelect img-thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-3 noBG borderless" />
+			</div>
+	   </div>
+	
+	
+		
     </div>
+	
     <!-- /#wrapper -->
 	
-	<!--login MODAL START -->
-	<div id="localLoginModal" class="modal fade"  data-backdrop="static" >
+	<div class="instructionsWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+			<!-- instruction addition START 
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+				<img src="img/png/char-mentor.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12" />
+				
+			</div>
+			
+			<!--instruction ADDITION START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionAddition">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+			
+				<p><b>Addition Kingdom: </b> Lets protect the Addition Kingdom by solving addition problems.</p>
+				<!--
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+					<img src="img/png/instructions/instruction-addition.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>-->
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-addition.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the sum and Complete the number sentence</p>
+				
+					<button id="quizArrayAddition" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction ADDITION END-->
+			
+			<!--instruction subtraction START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionSubtraction">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Subtraction Kingdom: </b>Lets protect the Subtraction Kingdom by solving subtraction problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-subtraction.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the difference and Complete the number sentence</p>
+				
+					<button id="quizArraySubtraction" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction subtraction END-->
+			
+			
+			<!--instruction multiplication START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionMultiplication">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Multiplication Kingdom: </b>Lets protect the Multiplication Kingdom by solving Multiplication problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-multiplication.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the product and Complete the number sentence</p>
+				
+					<button  id="quizArrayMultiplication" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction multiplication END-->
+			
+			<!--instruction Division START-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 instructionContainer instructionDivision">
+			<!--<img src="img/png/btn-x.png" alt="" class="btn_close" style="z-index:999999999"/>-->
+				
+				<p><b>Division Kingdom: </b>Lets protect the Division Kingdom by solving Division problems.</p>
+				
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<img src="img/png/instructions/instruction-division.png" alt="" class="img-thumbnail noBG borderless col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<h4>Instruction:</h4>
+					<p>Find the Quotient and Complete the number sentence</p>
+				
+					<button  id="quizArrayDivision" class="startGame btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:right">
+						Start Game
+					</button>
+				</div>
+				
+			</div><!--instruction multiplication END-->
+			
+				
+			
+		</div>
+	<!-- Boostrap Modal START
+	<div id="myModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<img src="img/png/btn-x.png" alt="" class="btn_close" data-dismiss="modal" />
-					<center><h2 class="modal-title">Welcome to the World of ALAMATH</h2></center>
-					
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Confirmation</h4>
 				</div>
 				<div class="modal-body">
-					<center>
-					<!--charSelectContainer START -->
-					<div class="charSelectContainer row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h3>Select Your Character</h3>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" >
-							<img id="maleChar" src="img/png/main-char-male.png" alt="" class="selectedChar charSelectOptionImg col-lg-6 col-md-6 col-sm-6 col-xs-6" />
-							<img id="femaleChar" src="img/png/main-char-female.png" alt="" class="charSelectOptionImg col-lg-6 col-md-6 col-sm-6 col-xs-6" />
-						</div>
-						
-						
-					</div><!--charSelectContainer END -->
-						<div class="welcomeDiv" style="display:none;">
-							<h2 class="txtWelcomeUsername"></h2>
-							<a href="main-map.html"><button type="button" class="btn btn-default  form-control" data-dismiss="modal" >Continue</button></a>
-						</div>
-					</center>
-					<div class="loginModalForm">
-						<center>
-							<h3>What is your Name?</h3>
-							<input type="text" name="" id="inputLocalUsername" class=" form-control" placeholder="Type here your name, or your nickname." style="margin-bottom:1em" required />
-							<p class="txtLoginLocalErrorMsg"></p>
-						</center>
-						
-						
-							<button type="button" class="btn btn-default  form-control btnLoginLocalStorage" >Continue</button>
-							<!--
-							<button type="button" class="btn btn-default  form-control " data-dismiss="modal">Close</button>
-							-->
-					</div>
+					<p>Do you want to save changes you made to document before closing?</p>
+					<p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
 				</div>
 				<div class="modal-footer">
-					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
-	</div><!--login MODAL END -->
-	
-	<!--login edit MODAL START -->
-	<div id="localLoginEditModal" class="modal fade"  data-backdrop="static">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			
-				<div class="modal-header" >
-					<img src="img/png/btn-x.png" alt="" class="btn_close" data-dismiss="modal" />
-					<center><h2 class="modal-title">Welcome to the World of ALAMATH</h2></center>
-				</div>
-				<div class="modal-body">
-					
-					<center>
-						<!--charSelectContainer START -->
-					<div class="charSelectContainer row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h3>Select Your Character</h3>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
-							<img id="maleCharEdit" src="img/png/main-char-male.png" alt="" class="selectedChar charSelectOptionImg ol-lg-6 col-md-6 col-sm-6 col-xs-6" />
-							<img id="femaleCharEdit" src="img/png/main-char-female.png" alt="" class="charSelectOptionImg ol-lg-6 col-md-6 col-sm-6 col-xs-6" />
-						</div>
-						
-						
-					</div><!--charSelectContainer END -->
-						<h3 class="">Hi <span class="txtHiUsername"></span></h3>
-						<div class="editUsernameDiv" style="display:none">
-							<input type="text" name="" id="inputEditLocalUsername" class=" form-control" placeholder="Type your new Name or Nickname here." style="margin-bottom:1em" required />
-							<p class="txtLoginLocalErrorMsg"></p>
-							<button type="button" class="btn btn-default  form-control btnSaveChangesLocalUsername" >Save Changes</button>
-						</div>
-					
-						<button type="button" class="btn btn-default  form-control btnChangeYourName" >Change Your Name?</button>
-						<!--
-						<button type="button" class="btn btn-default  form-control " data-dismiss="modal">Close</button>
-						-->
-					</center>
-				</div>
-				<div class="modal-footer">
-					
-				</div>
-			</div>
-		</div>
-	</div><!--login edit MODAL END -->
-	
-	
-	
-	
+	</div>
+	Boostrap  Modal END-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/quizArray.js"></script>
-	<script src="js/jq-custom.js"></script>
 	<script src="js/jq-custom-animations.js"></script>
-	<script src="js/jquery.transit.js"></script>
-	
-	<script src="phonegap.js"></script>
+		<script src="js/jquery.transit.js"></script>
+		
+		<script src="phonegap.js"></script>
 	<script type="text/javascript">
+	
 		$(document).ready(function(){
-			var myMedia;
-		startSplash();
-		function startSplash(){
-		playAudio();
-			var	a = window.sessionStorage.getItem("splashScreen");
-			if(a == null || a == "null" || a == undefined || a == "undefined"){
-			
-				$(".splashImages").fadeToggle(2000);
-				setTimeout(function(){
-					$(".splashImages1").transition({opacity:1},500);
-				},3000);
-				
-				setTimeout(function(){
-					$(".splashImages2").transition({opacity:1},2000);
-				},4000);
-				
-				
-				setTimeout(function(){
-					$(".splashKo").fadeToggle();
-				},8000);
-				setTimeout(function(){
-					
-					$(".cloudToLeft").transition({ x: "-1500px"},3000);
-					$(".cloudToRight").transition({ x: "+1500px"},3000);
-					$("#wrapper").transition({ y: "1175px"},1000);
-				},8000);
-				
-				window.sessionStorage.setItem("splashScreen","1");
-			}else if(a == "1"){
-				$(".splashKo").css({display:"none"});
-				$(".splashKo").hide();
-				$(".cloudToLeft").transition({ x: "-1500px"},3000);
-				$(".cloudToRight").transition({ x: "+1500px"},3000);
-				$("#wrapper").transition({ y: "1175px"},1000);
-			}
-			
-		}
+		var myMedia;
 		$("body").transition({opacity:1},1000);
 		
-			getCharacterSelected();
-			storeQuizArrayToLocalStorage();
-			//addScript("js/jquery.transit.js");
-			$(".btnLoginLocalStorage").click(function(){
-				var a = $("#inputLocalUsername").val();
-				if(a == ""){
-					$(".txtLoginLocalErrorMsg").html("Please input your Name");
-				}else{
-					localLogin($(".loginModalForm").hide());
+		
+			openWindow();
+			$("#btn").click(function(){
+				$("#myModal").modal('show');
 				
-				}
-			});
-			
-			function localLogin(){
-				var a = $("#inputLocalUsername").val();
-				window.localStorage.setItem("localAccountUsername",a);
-				var c = window.localStorage.getItem("localAccountUsername");
-				$(".welcomeDiv").show();
-				$(".txtWelcomeUsername").html("Welcome "+ c);
-				$(".txtHiUsername").html(c);
-			}
-			
-			
-			$(".btnChangeYourName").click(function(){
-				$(".btnChangeYourName").hide();
-				$(".editUsernameDiv").show();
 				
 			});
-			$(".btnSaveChangesLocalUsername").click(function(){
-				var a = $("#inputEditLocalUsername").val();
-				if(a == ""){
-					$(".txtLoginLocalErrorMsg").html("Please input your Name");
-				}else{
-					window.localStorage.setItem("localAccountUsername",a);
-					 $(".txtHiUsername").html(a);
-					 $(".txtLoginLocalErrorMsg").html("");
-					 $("#inputEditLocalUsername").val("");
-				}
-			});
 			
-			//$(".cloudToLeft").animate({'left':'+=1000px'},1500);
-			//$(".cloudToRight").animate({'left':'-=1000px'},1500);
+			$(".cloudToLeft").animate({'left':'1000px'},2000);
+			$(".cloudToRight").animate({'left':'-=1000px'},2000);
 			
 			
-			///$("#wrapper").animate({top:'+=1200px'},1000);
-			
-			
-			
-			//selecting character START
-			
-			$(".charSelectOptionImg").click(function(){
-				$(".charSelectOptionImg").removeClass("selectedChar");
+			$(".levelSelect").click(function(){
 				var a = $(this).attr("id");
-				$("#"+a).addClass("selectedChar");
-				window.localStorage.setItem("character",a);
-			});
-			$(".btn-to-option").click(function(){getCharacterSelected();});
-			
-			
-			function getCharacterSelected(){
-				
-				var a = window.localStorage.getItem("character");
-				if(a == null || a == "null"){
-					$("#maleChar").addClass("selectedChar");
-					window.localStorage.setItem("character","maleChar");
-				}
 				//alert(a);
-				$(".charSelectOptionImg").removeClass("selectedChar");
-				$("#"+a).addClass("selectedChar");
-				$("#"+a+"Edit").addClass("selectedChar");
-				changeCharElements();
-			}
-			//selecting character END
+				showInstructions();
+				$(".levelSelect").removeClass("levelSelected");
+				$(this).addClass("levelSelected");
+				setTimeout(function(){
+					$(".instructionContainer").hide();
+					if(a == "levelAddition"){
+						$(".instructionAddition").show();
+					}else if(a == "levelSubtraction"){
+						$(".instructionSubtraction").show();
+					}else if(a == "levelMultiplication"){
+						$(".instructionMultiplication").show();
+					}else if(a == "levelDivision"){
+						$(".instructionDivision").show();
+					}
+				},500);
+				
+			});
+			
 			
 			playAudio('1.mp3');
 			//var my_media = null;
@@ -423,7 +304,7 @@
 			
 			 function playAudio(src) {
             if (device.platform == 'Android') {
-                src = '/android_asset/www/' + src;
+                src = '/android_asset/www/default/' + src;
             }
 
             var media = new Media(src, success, error_error);
@@ -443,6 +324,21 @@
 			<!--=================================== AUDIO END ===================================================-->
 		});
 	
+		function showInstructions(){
+			$(".instructionsWrapper").transition({bottom:"-50%"},500,function(){
+				$(".instructionsWrapper").transition({bottom:"0%"},1000)
+			
+			});
+		}
+		
+		$(".startGame").click(function(){
+			var a = $(this).attr("id");
+			
+			//alert(a);
+			window.localStorage.setItem("quizLevelSelected",a);
+			location.href = "main-game-page.html";
+		});
+			
 	</script>
 
 </body>
